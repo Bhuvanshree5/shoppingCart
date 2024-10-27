@@ -1,4 +1,4 @@
-name: shopping cart flow
+name: Shopping Cart Flow
 
 on:
   push:
@@ -13,34 +13,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
-    - name: Install K6
-      run: snap install -y k6
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Install Snap and K6
+        run: |
+          sudo apt update
+          sudo apt install -y snapd
+          sudo snap install k6
 
-    - name: Install dependencies
-      run: npm install
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Run tests with coverage
-      run: npm test
+      - name: Install dependencies
+        run: npm install
 
-    - name: Upload Coverage Report
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: coverage-report
-        path: coverage/
+      - name: Run tests with coverage
+        run: npm test
 
-    - name: Display Coverage Summary
-      run: |
-        echo "Coverage Summary:"
-        cat ./coverage/lcov-report/index.html
+      - name: Upload Coverage Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
 
-    
+      - name: Display Coverage Summary
+        run: |
+          echo "Coverage Summary:"
+          cat ./coverage/lcov-report/index.html
 
-     
+
