@@ -39,4 +39,10 @@ jobs:
         echo "Coverage Summary:"
         cat ./coverage/lcov-report/index.html
 
+    - name: Install K6
+      run: sudo apt-get install -y k6
+
+    - name: Run K6 Performance Tests
+      run: k6 run tests/performance_testing/k6_test.js
+
      
