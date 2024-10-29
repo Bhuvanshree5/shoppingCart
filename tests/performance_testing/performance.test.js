@@ -29,4 +29,4 @@ test("K6 performance test for user registration", (done) => {
     console.log(`K6 Output: ${stdout}`);
     done();
   });
-}, 60000); // Set a higher timeout if needed
+}, 60000); 

@@ -10,7 +10,7 @@ async function createConnection(){
     })
 }
 
-async function updateUser(name,email){
+async function updateUser(name,email){ 
     const connection = await createConnection()
     try{
     const sql = 'insert into user_info (name,email) values(?,?);'
